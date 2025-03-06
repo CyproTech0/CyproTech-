@@ -23,6 +23,13 @@ h1 {
     margin-top: 20px;
 }
 
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00FF00;
+    margin-top: 10px;
+}
+
 .links {
     margin-top: 20px;
 }
