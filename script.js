@@ -1,29 +1,25 @@
-const text = "Não estamos à vista. Estamos no controle.";
-let i = 0;
-const speed = 55;
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("commandInput");
+  const output = document.getElementById("output");
 
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("typewriter").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
-}
+  const commands = {
+    help: "Comandos disponíveis:<br>• help<br>• about<br>• contact<br>• manifesto<br>• clear",
+    about: "CyproTech é uma organização digital que opera nas sombras, com foco em infiltração, contra-medidas e anonimato.",
+    contact: "E-mail: ops@cyprotech.black<br>Chave pública: ghostchain://drop/CYPROTECH",
+    manifesto: "Somos silêncio. Somos código. Somos ruptura.<br>Não precisamos ser vistos. Só causar impacto.",
+    clear: () => { output.innerHTML = ''; return ''; }
+  };
 
-function revealOnScroll() {
-  const cards = document.querySelectorAll('.reveal');
-  cards.forEach(card => {
-    const windowHeight = window.innerHeight;
-    const elementTop = card.getBoundingClientRect().top;
-    if (elementTop < windowHeight - 100) {
-      card.classList.add('show');
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      const cmd = input.value.trim().toLowerCase();
+      if (cmd !== '') {
+        output.innerHTML += `<div><span class="prompt">root@cyprotech:~#</span> ${cmd}</div>`;
+        const response = typeof commands[cmd] === "function" ? commands[cmd]() : (commands[cmd] || "Comando não reconhecido.");
+        if (response) output.innerHTML += `<div>${response}</div>`;
+        input.value = "";
+        window.scrollTo(0, document.body.scrollHeight);
+      }
     }
   });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("typewriter").innerHTML = "";
-  typeWriter();
-  revealOnScroll();
-  window.addEventListener("scroll", revealOnScroll);
 });
