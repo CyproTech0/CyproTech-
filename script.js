@@ -12,14 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
-      const cmd = input.value.trim().toLowerCase();
-      if (cmd !== '') {
-        output.innerHTML += `<div><span class="prompt">root@cyprotech:~#</span> ${cmd}</div>`;
-        const response = typeof commands[cmd] === "function" ? commands[cmd]() : (commands[cmd] || "Comando não reconhecido.");
-        if (response) output.innerHTML += `<div>${response}</div>`;
-        input.value = "";
-        window.scrollTo(0, document.body.scrollHeight);
-      }
+      let cmd = input.value.trim().toLowerCase();
+      if (cmd.startsWith("/")) cmd = cmd.slice(1);  // remove a barra
+
+      output.innerHTML += `<div><span class="prompt">root@cyprotech:~#</span> ${cmd}</div>`;
+
+      const response = typeof commands[cmd] === "function"
+        ? commands[cmd]()
+        : (commands[cmd] || "Comando não reconhecido.");
+
+      if (response) output.innerHTML += `<div>${response}</div>`;
+      input.value = "";
+      window.scrollTo(0, document.body.scrollHeight);
     }
   });
 });
