@@ -13,7 +13,7 @@
   <div class="terminal-box glow">
     <div class="logo">C Y P R O T E C H</div>
     <div class="terminal">
-      <p>Terminal v2.2 — Digite <span class="cmd">help</span> para comandos.</p>
+      <p>Terminal v2.3 — Digite <span class="cmd">help</span> para comandos.</p>
       <div id="output"></div>
       <div class="prompt">
         <span>root@cyprotech:~#</span>
@@ -28,6 +28,20 @@
     <input type="password" id="loginInput" placeholder="Digite a chave...">
     <button onclick="validateLogin()">Acessar</button>
     <p id="loginStatus"></p>
+  </div>
+
+  <div class="panel-content glow" id="realPanel" style="display: none;">
+    <h3>Painel de Controle</h3>
+    <p>Status: <span style="color:lime">Online</span></p>
+    <p>IP da sessão: 192.168.219.10</p>
+    <p>Rede: CyproTechGhostNet</p>
+    <button onclick="alert('Override autorizado')">Executar Override</button>
+    <button onclick="alert('Logs exportados')">Exportar Logs</button>
+    <pre id="logArea">
+[+] Sistema iniciado...
+[+] Autenticação bem-sucedida
+[+] Carregando dados...
+    </pre>
   </div>
 
   <script src="script.js"></script>
