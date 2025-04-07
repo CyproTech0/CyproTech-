@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("commandInput");
   const output = document.getElementById("output");
   const beep = document.getElementById("sound");
+  const errorSound = document.getElementById("error");
   const loginPanel = document.getElementById("loginPanel");
   const loginInput = document.getElementById("loginInput");
   const loginStatus = document.getElementById("loginStatus");
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (e.ctrlKey && e.key === "l") {
-      loginPanel.classList.toggle("hidden");
+      loginPanel.classList.toggle("show");
       loginInput.focus();
     }
   });
@@ -39,9 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
 function validateLogin() {
   const input = document.getElementById("loginInput").value;
   const status = document.getElementById("loginStatus");
-  if (input === "cyproghost") {
-    status.innerHTML = "Acesso concedido.";
-  } else {
-    status.innerHTML = "Chave inválida.";
-  }
+  const errorSound = document.getElementById("error");
+
+  status.innerHTML = "Logando...";
+  setTimeout(() => {
+    if (input === "cyproghost") {
+      status.innerHTML = "Acesso concedido.";
+    } else {
+      status.innerHTML = "Acesso negado.";
+      errorSound.play();
+    }
+  }, 1000);
 }
