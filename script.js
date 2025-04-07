@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const output = document.getElementById("output");
   const beep = document.getElementById("sound");
   const errorSound = document.getElementById("error");
-  const loginInput = document.getElementById("loginInput");
-  const loginStatus = document.getElementById("loginStatus");
 
   const responses = {
     help: "Comandos:\nhelp\nabout\ncontact\nmanifesto\nlogs\nclear\nscan\ntrace\ninject\ncd\nls\ndashboard\nmonitor\nfirewall-bypass\nproxy-scan",
@@ -99,10 +97,16 @@ function validateLogin() {
   const status = document.getElementById("loginStatus");
   const errorSound = document.getElementById("error");
 
+  if (input === "") return;
+
   status.innerHTML = "Logando...";
   setTimeout(() => {
     if (input === "cyproghost") {
-      status.innerHTML = "Acesso concedido.";
+      status.innerHTML = "Acesso concedido. Iniciando painel...";
+      setTimeout(() => {
+        document.getElementById("loginPanel").style.display = "none";
+        document.getElementById("realPanel").style.display = "block";
+      }, 1500);
     } else {
       status.innerHTML = "Acesso negado.";
       errorSound.play();
