@@ -5,12 +5,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .terminal-box {
   border: 1px solid #00ff00;
   padding: 20px;
   margin: 30px;
   border-radius: 8px;
 }
+
 .logo {
   text-align: center;
   font-size: 26px;
@@ -19,14 +21,18 @@ body {
   color: #00ff00;
   text-shadow: 0 0 12px #00ff00;
   margin-bottom: 10px;
+  white-space: nowrap;
 }
+
 .terminal {
   background: #000;
   padding: 10px;
 }
+
 .prompt {
   display: flex;
 }
+
 input[type="text"] {
   background: transparent;
   border: none;
@@ -36,21 +42,40 @@ input[type="text"] {
   outline: none;
   flex: 1;
 }
+
 .cmd {
   font-weight: bold;
 }
+
 .login-panel {
   position: fixed;
-  top: 20%;
-  left: 10%;
-  right: 10%;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: #111;
   border: 1px solid #0f0;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #0f0;
   box-shadow: 0 0 20px #0f0;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
 }
+
+.login-panel.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.login-panel input,
+.login-panel button {
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
 .hidden {
   display: none;
 }
