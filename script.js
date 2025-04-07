@@ -7,12 +7,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const loginInput = document.getElementById("loginInput");
   const loginStatus = document.getElementById("loginStatus");
 
-  const commands = {
-    help: "Comandos disponíveis:<br>• help<br>• about<br>• contact<br>• manifesto<br>• logs<br>• clear",
-    about: "CyproTech: organização de infiltração e inteligência cibernética.",
-    contact: "Email seguro: ops@cyprotech.black<br>Chave pública: ghostchain://drop/CYPROTECH",
-    manifesto: "Somos silêncio. Somos ruptura. O mundo não precisa saber que existimos — só sentir os efeitos.",
-    logs: "[+] Conexão interceptada de 192.168.0.254<br>[+] Acesso root concedido<br>[!] Monitoramento ativado<br>[+] Upload de exploits bem-sucedido",
+  const responses = {
+    help: "Comandos:\nhelp\nabout\ncontact\nmanifesto\nlogs\nclear\nscan\ntrace\ninject\ncd\nls",
+    about: "CyproTech: rede subterrânea de inteligência digital.",
+    contact: "Email: ops@cyprotech.black\nChave pública: ghostchain://drop/CYPROTECH",
+    manifesto: "Somos silêncio. Somos código. A ruptura está em curso.",
+    logs: "[+] Conexão interceptada\n[+] Root acessado\n[!] Logs em tempo real ativados",
+    scan: "Scanner de rede:\n• 192.168.0.1 [OPEN]\n• 192.168.0.105 [FIREWALLED]\n• 10.0.0.99 [EXPLOITABLE]",
+    trace: "Rastreando...\nCamada 1 OK\nCamada 2 OK\nIP real mascarado via GhostProtocol.",
+    inject: "Injetando payload...\nStatus: SUCESSO\nOverride em kernel virtual.",
+    cd: "Permissão negada: ambiente isolado.",
+    ls: "profile.sys\naccess.log\nexploit.bat\n",
     clear: () => { output.innerHTML = ''; return ''; }
   };
 
@@ -22,12 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (cmd.startsWith("/")) cmd = cmd.slice(1);
 
       output.innerHTML += `<div><span class="prompt">root@cyprotech:~#</span> ${cmd}</div>`;
-      const response = typeof commands[cmd] === "function" ? commands[cmd]() : (commands[cmd] || "Comando não reconhecido.");
-      if (response) output.innerHTML += `<div>${response}</div>`;
-
-      input.value = "";
       beep.play();
-      window.scrollTo(0, document.body.scrollHeight);
+      typeResponse(cmd);
+      input.value = "";
     }
 
     if (e.ctrlKey && e.key === "l") {
@@ -35,6 +37,39 @@ document.addEventListener("DOMContentLoaded", function () {
       loginInput.focus();
     }
   });
+
+  function typeResponse(cmd) {
+    const response = typeof responses[cmd] === "function" ? responses[cmd]() : (responses[cmd] || "Comando não reconhecido.");
+    if (!response) return;
+
+    const lines = response.split("\n");
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeNextChar() {
+      if (lineIndex >= lines.length) return;
+
+      if (charIndex === 0) {
+        const line = document.createElement("div");
+        line.id = `line-${lineIndex}`;
+        output.appendChild(line);
+      }
+
+      const lineElem = document.getElementById(`line-${lineIndex}`);
+      lineElem.textContent += lines[lineIndex].charAt(charIndex);
+      charIndex++;
+
+      if (charIndex < lines[lineIndex].length) {
+        setTimeout(typeNextChar, 15);
+      } else {
+        charIndex = 0;
+        lineIndex++;
+        setTimeout(typeNextChar, 100);
+      }
+    }
+
+    typeNextChar();
+  }
 });
 
 function validateLogin() {
