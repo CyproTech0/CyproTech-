@@ -7,16 +7,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const loginStatus = document.getElementById("loginStatus");
 
   const responses = {
-    help: "Comandos:\nhelp\nabout\ncontact\nmanifesto\nlogs\nclear\nscan\ntrace\ninject\ncd\nls",
+    help: "Comandos:\nhelp\nabout\ncontact\nmanifesto\nlogs\nclear\nscan\ntrace\ninject\ncd\nls\ndashboard\nmonitor",
     about: "CyproTech: rede subterrânea de inteligência digital.",
     contact: "Email: ops@cyprotech.black\nChave pública: ghostchain://drop/CYPROTECH",
     manifesto: "Somos silêncio. Somos código. A ruptura está em curso.",
     logs: "[+] Conexão interceptada\n[+] Root acessado\n[!] Logs em tempo real ativados",
     scan: "Scanner de rede:\n• 192.168.0.1 [OPEN]\n• 192.168.0.105 [FIREWALLED]\n• 10.0.0.99 [EXPLOITABLE]",
-    trace: "Rastreando...\nCamada 1 OK\nCamada 2 OK\nIP real mascarado via GhostProtocol.",
+    trace: "Rastreando...\nCamada 1 OK\nCamada 2 OK\nIP mascarado via GhostProtocol.",
     inject: "Injetando payload...\nStatus: SUCESSO\nOverride em kernel virtual.",
     cd: "Permissão negada: ambiente isolado.",
     ls: "profile.sys\naccess.log\nexploit.bat",
+    dashboard: `
+=== CyproTech Dashboard ===
+Status de Rede: Ativa
+IP Público: 179.233.112.44
+Spoofing: Habilitado
+Logs interceptados: 48
+Firewalls burlados: 3
+Payloads prontos: 7`,
+    monitor: `
+== MONITORAMENTO ATIVO ==
+[+] Alvo: 201.88.114.203
+[+] Status: ONLINE
+[+] Sistema: Linux-5.4
+[+] Localização: São Paulo - BR
+[+] Porta 22: SSH aberto
+[+] Pacotes analisados: 1.442`,
     clear: () => { output.innerHTML = ''; return ''; }
   };
 
@@ -57,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         charIndex = 0;
         lineIndex++;
-        setTimeout(typeNextChar, 100);
+        setTimeout(typeNextChar, 80);
       }
     }
 
