@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const output = document.getElementById("output");
   const beep = document.getElementById("sound");
   const errorSound = document.getElementById("error");
-  const loginPanel = document.getElementById("loginPanel");
   const loginInput = document.getElementById("loginInput");
   const loginStatus = document.getElementById("loginStatus");
 
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     trace: "Rastreando...\nCamada 1 OK\nCamada 2 OK\nIP real mascarado via GhostProtocol.",
     inject: "Injetando payload...\nStatus: SUCESSO\nOverride em kernel virtual.",
     cd: "Permissão negada: ambiente isolado.",
-    ls: "profile.sys\naccess.log\nexploit.bat\n",
+    ls: "profile.sys\naccess.log\nexploit.bat",
     clear: () => { output.innerHTML = ''; return ''; }
   };
 
@@ -31,11 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
       typeResponse(cmd);
       input.value = "";
     }
-
-    if (e.ctrlKey && e.key === "l") {
-      loginPanel.classList.toggle("show");
-      loginInput.focus();
-    }
   });
 
   function typeResponse(cmd) {
@@ -48,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function typeNextChar() {
       if (lineIndex >= lines.length) return;
-
       if (charIndex === 0) {
         const line = document.createElement("div");
         line.id = `line-${lineIndex}`;
