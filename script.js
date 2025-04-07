@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const loginStatus = document.getElementById("loginStatus");
 
   const responses = {
-    help: "Comandos:\nhelp\nabout\ncontact\nmanifesto\nlogs\nclear\nscan\ntrace\ninject\ncd\nls\ndashboard\nmonitor",
+    help: "Comandos:\nhelp\nabout\ncontact\nmanifesto\nlogs\nclear\nscan\ntrace\ninject\ncd\nls\ndashboard\nmonitor\nfirewall-bypass\nproxy-scan",
     about: "CyproTech: rede subterrânea de inteligência digital.",
     contact: "Email: ops@cyprotech.black\nChave pública: ghostchain://drop/CYPROTECH",
     manifesto: "Somos silêncio. Somos código. A ruptura está em curso.",
@@ -33,6 +33,19 @@ Payloads prontos: 7`,
 [+] Localização: São Paulo - BR
 [+] Porta 22: SSH aberto
 [+] Pacotes analisados: 1.442`,
+    "firewall-bypass": `
+Iniciando bypass de firewall...
+[+] Porta 443 - TLS handshake forjado
+[+] Injeção UDP simulada
+[+] IDS desviado com pacotes fragmentados
+Resultado: ACESSO TEMPORÁRIO OBTIDO`,
+    "proxy-scan": `
+Varredura de proxies públicos:
+- proxy1.cyprotech.black [OK]
+- proxy2.cyprotech.black [OK]
+- proxy3.cyprotech.black [LENTO]
+- proxy4.cyprotech.black [BLOQUEADO]
+Recomendado: proxy1`,
     clear: () => { output.innerHTML = ''; return ''; }
   };
 
